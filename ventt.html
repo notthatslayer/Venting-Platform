@@ -1,0 +1,147 @@
+<html>
+<head>
+    <title>Venting Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0b573e;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            overflow: hidden; 
+        }
+        nav {
+            padding: 18px;
+            margin: 0;
+            scroll-behavior: smooth;
+            overflow: hidden;
+            display: block;
+            background-color: #83eab8;
+            border: 3px double #006400; 
+        }
+        #ventBox {
+            position: fixed;
+            top: 70px; 
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            z-index: 10; 
+        }
+        #ventInput {
+            width: calc(100% - 120px);
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ffffff;
+            background-color: #333333;
+            color: #ffffff;
+            font-size: 16px;
+        }
+        #ventButton {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background-color: black;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px; 
+            margin-top: 10px; 
+        }
+        .vent {
+            position: absolute;
+            border-radius: 50%;
+            padding: 10px;
+            color: #ffffff;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <center>
+          <a href="index.html">Home</a>&nbsp;&nbsp;&nbsp;
+          <a href="kmore.html">Know More</a>&nbsp;&nbsp;&nbsp;
+          <a href="ventt.html">Vent?</a>&nbsp;&nbsp;&nbsp;
+          <a href="contact.html">Contact</a>&nbsp;&nbsp;&nbsp;
+          <a href="about.html">About</a>
+        </center>
+    </nav>
+
+    <div id="ventBox">
+        <input type="text" id="ventInput" maxlength="1000" placeholder="Vent your heart out :)">
+        <button id="ventButton">Let it out</button>
+    </div>
+
+    <script>
+        const colors = ['#004d40', '#00796b', '#009473', '#004d40', '#002f2f'];
+        const ventInput = document.getElementById('ventInput');
+        const ventButton = document.getElementById('ventButton');
+
+        const ventBoxRect = document.getElementById('ventBox').getBoundingClientRect();
+        const padding = 20; 
+        const ventRadius = 50; 
+        const occupiedPositions = [];
+
+        ventButton.addEventListener('click', addVent);
+        ventInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                addVent();
+            }
+        });
+
+        function isPositionOccupied(x, y) {
+            return occupiedPositions.some(pos => {
+                const dx = x - pos.x;
+                const dy = y - pos.y;
+                return Math.sqrt(dx * dx + dy * dy) < ventRadius * 2;
+            });
+        }
+
+        function getRandomPosition() {
+            let x, y;
+            do {
+                x = Math.random() * (window.innerWidth - ventRadius * 2 - padding * 2) + padding;
+                y = Math.random() * (window.innerHeight - ventBoxRect.bottom - ventRadius * 2 - padding * 2) + ventBoxRect.bottom + padding;
+            } while (isPositionOccupied(x, y));
+
+            
+            occupiedPositions.push({ x, y });
+
+            return { x, y };
+        }
+
+        function addVent() {
+            const text = ventInput.value.trim();
+            if (text.length === 0) return;
+
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const ventElement = document.createElement('div');
+            ventElement.className = 'vent';
+            ventElement.style.backgroundColor = color;
+
+            const position = getRandomPosition();
+            ventElement.style.left = position.x + 'px';
+            ventElement.style.top = position.y + 'px';
+            ventElement.textContent = text;
+
+            document.body.appendChild(ventElement);
+
+            setTimeout(() => {
+                ventElement.style.opacity = '0';
+                setTimeout(() => {
+                    ventElement.remove();
+                    
+                    const index = occupiedPositions.findIndex(pos => pos.x === position.x && pos.y === position.y);
+                    if (index !== -1) occupiedPositions.splice(index, 1);
+                }, 1000);
+            }, 40000);
+
+            ventInput.value = '';
+        }
+    </script>
+</body>
+</html>

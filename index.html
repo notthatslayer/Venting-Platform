@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>testweb</title>
+<style>
+body {
+font-family: 'monaco', monospace;
+margin: 0;
+padding: 0;
+background-color: #83eab8;
+color: #ffffff;
+}
+header {
+background-color: #0b573e;
+color: white;
+padding: 20px;
+text-align: center;
+}
+section {
+padding: 20px;
+margin: 20px;
+border: 5px solid rgba(131, 234, 184, 0.7); 
+border-radius: 15px; 
+padding: 20px; 
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+background-color: rgb(45, 113, 69);
+}
+h1, h2 {
+font-size: 2rem;
+color: #a0e2a2;
+}
+p {
+font-size: 1rem;
+line-height: 1.6;
+}
+.facts {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 15px;
+margin-top: 20px;
+}
+.fact {
+background-color: rgba(60, 170, 99, 0.659);
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+footer {
+background-color: #0b573e;
+color: white;
+text-align: center;
+padding: 10px;
+margin-top: 40px;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Hey Hewmens, Tired of life? </h1>
+<p>A space to explore your emotions, learn about your mind, and vent your feelings.</p>
+</header>
+<nav style= "padding: 10px;
+      margin: 0.7px;
+      scroll-behavior: smooth;
+      overflow: hidden;
+      display: block;
+      padding: 18px;
+      background-color: #55c381; ">
+<center>
+<a href="index.html">Home</a>&nbsp;&nbsp;&nbsp;
+<a href="kmore.html">Know More</a>&nbsp;&nbsp;&nbsp;
+<a href="ventt.html">Vent?</a> &nbsp;&nbsp;
+<a href="contact.html">Contact</a>&nbsp;&nbsp;
+<a href="about.html">About</a>
+</center>
+</nav>
+<section>
+<h2>Understanding the Human Mind</h2>
+<p>The human mind is incredibly complex, and understanding it can help you live a more balanced and fulfilling life. 
+Our thoughts, emotions, and behaviors are all interconnected and influenced by many factors, including biology, psychology, and environment. 
+Recognizing these patterns is the first step toward improving your mental well-being.</p>
+<p>Our brains are constantly processing information, making decisions, and reacting to our surroundings.
+Stress, anxiety, happiness, and sadness are all natural responses to the world around us.
+However, how we interpret and react to these feelings can shape our mental health over time.</p>
+</section>
+<section>
+<h2>Psychological Facts About the Mind</h2>
+<div class="facts">
+<div class="fact">
+<h3>1. The Mind & Body Are Interconnected</h3>
+<p>Your mind and body are constantly communicating with each other. 
+When you're stressed, your body can exhibit physical symptoms such as headaches, muscle tension, or fatigue.</p>
+</div>
+<div class="fact">
+<h3>2. Cognitive Biases Affect Your Decisions</h3>
+<p>Your mind tends to take shortcuts in processing information, which can lead to biases. 
+These biases can influence how you perceive reality and make decisions.</p>
+</div>
+<div class="fact">
+<h3>3. Emotions Are Contagious</h3>
+<p>Emotions can spread from person to person.
+If you're around people who are stressed or anxious, it may affect your mood. 
+This is known as emotional contagion.</p>
+</div>
+<div class="fact">
+<h3>4. Your Brain Can Change with Practice</h3>
+<p>The brain has neuroplasticity, meaning it can change and reorganize itself in response to new experiences, learning, or practice.
+This is why you can develop new skills and habits over time.</p>
+</div>
+<div class="fact">
+<h3>5. Negative Thoughts Are Natural</h3>
+<p>Your brain is wired to focus on negative thoughts due to evolution, which helped humans stay alert to dangers. 
+However, this can lead to excessive worry, so it's important to counterbalance with positive thoughts.</p>
+</div>
+<div class="fact">
+<h3>6. Sleep is Critical for Mental Health</h3>
+<p>Sleep is essential for maintaining emotional and cognitive function. 
+Lack of sleep can impair your judgment, increase stress, and reduce your ability to cope with challenges.</p>
+</div>
+</div>
+</section>
+<footer>
+<p>© 2024 All rights reserved. Hewmen</p>
+</footer>
+<script>
+function submitVent() {
+var ventText = document.getElementById('ventingText').value;
+if (ventText.trim() === "") {
+alert("Please write something before submitting!");
+return;
+}
+document.getElementById('ventingText').value = "";
+document.getElementById('ventFeedback').style.display = 'block';
+}
+</script>
+</body>
+</html>
